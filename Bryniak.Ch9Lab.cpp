@@ -11,6 +11,10 @@ This program prompts the user for a list of song/artist names and sorts and disp
 #include <vector>
 
 using namespace std;
+const string TITLE = "Playlist Sorter";
+const string DESCRIPTION = "This program prompts the user for a list of song/artist names and sorts and displays them.";
+
+
 int main() {
   return 0;
 }
