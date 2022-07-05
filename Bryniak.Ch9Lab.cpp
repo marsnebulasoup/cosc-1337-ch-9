@@ -11,8 +11,13 @@ This program prompts the user for a list of song/artist names and sorts and disp
 #include <vector>
 
 using namespace std;
+
 const string TITLE = "Playlist Sorter";
 const string DESCRIPTION = "This program prompts the user for a list of song/artist names and sorts and displays them.";
+const string PROMPT_TITLE = "Enter a song title: ";
+const string PROMPT_ARTIST = "Enter the artist: ";
+const string PROMPT_REPEAT = "Add another song? (y/n): ";
+const string EMPTY_VAL = "N/A";
 
 struct Song
 {
