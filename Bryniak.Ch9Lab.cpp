@@ -1,5 +1,5 @@
 /*
-Title
+Playlist Sorter
 Author: Kevin Bryniak
 Status: Incomplete
 Completed: N/A
@@ -7,6 +7,7 @@ This program prompts the user for a list of song/artist names and sorts and disp
 */
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <vector>
 
@@ -17,9 +18,8 @@ const string DESCRIPTION = "This program prompts the user for a list of song/art
 const string PROMPT_TITLE = "Enter a song title: ";
 const string PROMPT_ARTIST = "Enter the artist: ";
 const string PROMPT_REPEAT = "Add another song? (y/n): ";
+const string OUTPUT_HEADER = "       Artist             Title\n======================================";
 const string EMPTY_VAL = "N/A";
-
-string input(string prompt = "> ");
 
 struct Song
 {
@@ -36,10 +36,36 @@ struct Song
 string input(string prompt = "> ");
 void sort(vector<Song> &songs);
 
-int main() {
+int main()
+{
+  cout << TITLE << endl
+       << DESCRIPTION << endl
+       << endl;
+
+  vector<Song> songs;
+
+  do
+  {
+    cout << endl;
+    string title = input(PROMPT_TITLE);
+    string artist = input(PROMPT_ARTIST);
+
+    songs.push_back(Song(title, artist));
+    
+  } while (input(PROMPT_REPEAT) != "n");
+
+
+  sort(songs);
+
+  cout << OUTPUT_HEADER << endl;
+  for (Song song : songs)
+  {
+    cout << setw(20) << left << song.artist << setw(20) << song.title << endl;
+  };
   return 0;
 }
 
+// Inputs a string from the user
 string input(string prompt)
 {
   string input;
@@ -47,24 +73,21 @@ string input(string prompt)
   getline(cin, input);
   return input;
 }
+
+// Sorts the songs in place in alphabetical order by artist, using selection sort
 void sort(vector<Song> &songs)
 {
-  int start = 0;  
-  int end = songs.size() - 1;
-  for (int start = 0; start < end; start++)
+  for (int start = 0; start < songs.size(); start++)
   {
-    Song most_alphabetical = songs[start];
-    int most_alphabetical_index = start;
-    for (int index = start + 1; index <= end; index++)
+    int min = start;
+    for (int index = start + 1; index < songs.size(); index++)
     {
-      Song current = songs[index];
-      if (current.artist < most_alphabetical.artist)
+      if (songs[index].artist < songs[min].artist)
       {
-        most_alphabetical = current;
-        most_alphabetical_index = index;
+        min = index;
       }
     }
-    songs[most_alphabetical_index] = songs[start];
-    songs[start] = most_alphabetical;
+    swap(songs[start], songs[min]);
   }
 }
+
