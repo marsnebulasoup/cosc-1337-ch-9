@@ -19,6 +19,8 @@ const string PROMPT_ARTIST = "Enter the artist: ";
 const string PROMPT_REPEAT = "Add another song? (y/n): ";
 const string EMPTY_VAL = "N/A";
 
+string input(string prompt = "> ");
+
 struct Song
 {
   string title;
@@ -34,4 +36,12 @@ struct Song
 
 int main() {
   return 0;
+}
+
+string input(string prompt)
+{
+  string input;
+  cout << prompt;
+  getline(cin, input);
+  return input;
 }
