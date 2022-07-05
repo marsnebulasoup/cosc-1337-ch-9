@@ -33,6 +33,8 @@ struct Song
   }
 };
 
+string input(string prompt = "> ");
+void sort(vector<Song> &songs);
 
 int main() {
   return 0;
@@ -44,4 +46,25 @@ string input(string prompt)
   cout << prompt;
   getline(cin, input);
   return input;
+}
+void sort(vector<Song> &songs)
+{
+  int start = 0;  
+  int end = songs.size() - 1;
+  for (int start = 0; start < end; start++)
+  {
+    Song most_alphabetical = songs[start];
+    int most_alphabetical_index = start;
+    for (int index = start + 1; index <= end; index++)
+    {
+      Song current = songs[index];
+      if (current.artist < most_alphabetical.artist)
+      {
+        most_alphabetical = current;
+        most_alphabetical_index = index;
+      }
+    }
+    songs[most_alphabetical_index] = songs[start];
+    songs[start] = most_alphabetical;
+  }
 }
