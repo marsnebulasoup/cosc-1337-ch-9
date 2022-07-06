@@ -1,8 +1,8 @@
 /*
 Playlist Sorter
 Author: Kevin Bryniak
-Status: Incomplete
-Completed: N/A
+Status: Complete
+Completed: 6 July 2022
 This program prompts the user for a list of song/artist names and sorts and displays them.
 */
 
@@ -30,8 +30,8 @@ struct Song
 
   Song(string title = EMPTY_VAL, string artist = EMPTY_VAL) // Constructor
   {
-    Song::title = title != "" ? title : EMPTY_VAL;
-    Song::artist = artist != "" ? artist : EMPTY_VAL;
+    Song::title = title != "" ? title : EMPTY_VAL; // If title is not empty, assign it to the title variable
+    Song::artist = artist != "" ? artist : EMPTY_VAL; // If artist is not empty, assign it to the artist variable
   }
 };
 
@@ -52,12 +52,12 @@ int main()
   do // Prompt the user for song titles and artist names and add them to the vector
   {
     cout << endl;
-    string title = input(PROMPT_TITLE);
-    string artist = input(PROMPT_ARTIST);
+    string title = input(PROMPT_TITLE); // Prompt the user for the title of the song
+    string artist = input(PROMPT_ARTIST); // Prompt the user for the artist of the song
 
-    songs.push_back(Song(title, artist));
+    songs.push_back(Song(title, artist)); // Add the song to the vector
     
-  } while (input(PROMPT_REPEAT) != "n");
+  } while (input(PROMPT_REPEAT) != "n"); // Repeat until the user enters "n"
 
 
   sort(songs); // Sort the songs
