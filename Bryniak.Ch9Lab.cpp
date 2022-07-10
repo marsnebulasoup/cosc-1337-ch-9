@@ -37,8 +37,9 @@ struct Song
 
 // Function prototypes
 string input(string prompt = "> "); // Prompts the user for input
+void getSongs(vector<Song> &songs); // Gets the songs from the user
 void sort(vector<Song> &songs); // Sorts the songs inplace using selection sort
-
+void display(vector<Song> songs); // Displays the songs
 
 int main()
 {
@@ -49,24 +50,9 @@ int main()
 
   vector<Song> songs; // Vector of songs
 
-  do // Prompt the user for song titles and artist names and add them to the vector
-  {
-    cout << endl;
-    string title = input(PROMPT_TITLE); // Prompt the user for the title of the song
-    string artist = input(PROMPT_ARTIST); // Prompt the user for the artist of the song
-
-    songs.push_back(Song(title, artist)); // Add the song to the vector
-    
-  } while (input(PROMPT_REPEAT) != "n"); // Repeat until the user enters "n"
-
-
+  getSongs(songs); // Gets the songs from the user
   sort(songs); // Sort the songs
-
-  cout << OUTPUT_HEADER << endl; // Output the header
-  for (Song song : songs) // Loop through the songs and output them
-  {
-    cout << setw(20) << left << song.artist << setw(20) << song.title << endl;
-  };
+  display(songs); // Display the songs
   return 0;
 }
 
@@ -77,6 +63,20 @@ string input(string prompt)
   cout << prompt; // Output the prompt
   getline(cin, input); // Get the input
   return input;
+}
+
+void getSongs(vector<Song> &songs)
+{
+  // Prompt the user for song titles and artist names and add them to the vector
+  do
+  {
+    cout << endl;
+    string title = input(PROMPT_TITLE); // Prompt the user for the title of the song
+    string artist = input(PROMPT_ARTIST); // Prompt the user for the artist of the song
+
+    songs.push_back(Song(title, artist)); // Add the song to the vector
+    
+  } while (input(PROMPT_REPEAT) != "n"); // Repeat until the user enters "n"
 }
 
 // Sorts the songs in place in alphabetical order by artist, using selection sort
@@ -94,4 +94,13 @@ void sort(vector<Song> &songs)
     }
     swap(songs[start], songs[min]); // Swap the current song with the current minimum
   }
+}
+
+void display(vector<Song> songs)
+{
+  cout << OUTPUT_HEADER << endl; // Output the header
+  for (Song song : songs) // Loop through the songs and output them
+  {
+    cout << setw(20) << left << song.artist << setw(20) << song.title << endl;
+  };
 }
