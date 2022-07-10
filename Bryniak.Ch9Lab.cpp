@@ -30,8 +30,8 @@ struct Song
 
   Song(string title = EMPTY_VAL, string artist = EMPTY_VAL) // Constructor
   {
-    Song::title = title != "" ? title : EMPTY_VAL; // If title is not empty, assign it to the title variable
-    Song::artist = artist != "" ? artist : EMPTY_VAL; // If artist is not empty, assign it to the artist variable
+    this->title = title != "" ? title : EMPTY_VAL; // If title is not empty, assign it to the title variable
+    this->artist = artist != "" ? artist : EMPTY_VAL; // If artist is not empty, assign it to the artist variable
   }
 };
 
